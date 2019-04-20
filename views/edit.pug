@@ -1,0 +1,104 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        script(src="jquery.js")
+        script(src="axios.js")
+        link(href="index.css", rel="stylesheet")
+        title Edit Prices
+    body
+        br
+        h1 Edit Prices
+        .service
+            h2 Add/Edit Service
+            h3 Service Name (case sensitive)
+            input(type="text", class="name")
+            h3 Service Price (no dollar sign!)
+            input(type="text", class="price")
+            h3 Service Price for 3 Months Unlimited (different in eyebrows only & no dollar sign!)
+            input(type="text", class="t-price")
+            h3 Service Price for 6 Session (different in eyebrows only & no dollar sign!)
+            input(type="text", class="s-price")
+            h3 Service Tag
+            select(name="tags" class="tags")
+                option(value="threading") threading
+                option(value="waxing") waxing
+                option(value="other") other
+            br
+            br
+            button(type="submit", class="enter") change
+        .hoogles
+            h2 Remove Service
+            h3 Service Name (case sensitive)
+            input(type="text", class="name")
+            h3 Service Tag (case sensitive)
+            input(type="text", class="tag")
+            br
+            br
+            button(type="submit", class="remove") remove
+        .boogles
+            h2 Edit Message
+            h3 Message 1
+            textarea(name="msg1", cols="30", rows="10", class="msg1")
+            h3 Message 2
+            textarea(name="msg2", cols="30", rows="10", class="msg2")
+            br
+            br
+            button(type="submit", class="edit") edit
+        h2 Current Services
+        ul
+            each val in data
+                if val.tag == "threading"
+                    li= val.name + " --- $" + val.price + " --- $" + val.tprice + " --- $" + val.sprice + " --- tag: " + val.tag
+                else
+                    li= val.name + " --- $" + val.price + " --- tag: " + val.tag
+    script.
+        // if you're a hacker dude, good job. take the password. it's all yours.
+
+        let password = '2019';
+        let a = prompt('password');
+        if (a !== password)
+            window.location.href = 'https://www.fbi.gov/wanted';
+        $(".enter").click(function(e) {
+            let parent = $(this).parent();
+            let name = parent.find(".name").val();
+            let price = parent.find(".price").val();
+            let tprice = parent.find(".t-price").val();
+            let sprice = parent.find(".s-price").val();
+            let tag = parent.find(".tags option:selected").text();
+            axios.post('/receiver/' + name + '/' + price + '/' + tag + '/' + tprice + '/' + sprice, {}).then(function(res) {
+                alert("updated successfully");
+                window.location.href = window.location.href;
+            }).catch(function(error) {
+                alert("SYSTEM FAILURE!!! if u check console, you'll get the reason for this.");
+                console.log(error);
+            });
+        });
+
+        $(".remove").click(function(e) {
+            let parent = $(this).parent();
+            let name = parent.find(".name").val();
+            let tag = parent.find(".tag").val();
+            axios.post('/deceiver/' + name + '/' + tag, {}).then(function(res) {
+                alert("removed successfully");
+                window.location.href = window.location.href;
+            }).catch(function(error) {
+                alert("SYSTEM FAILURE!!! if u check console, you'll get the reason for this.");
+                console.log(error);
+            });
+        });
+
+        $(".edit").click(function(e) {
+            let parent = $(this).parent();
+            let msg1 = parent.find(".msg1").val();
+            let msg2 = parent.find(".msg2").val();
+            axios.post('/changetext/' + encodeURIComponent(msg1) + '/' + encodeURIComponent(msg2), {}).then(function(res) {
+                alert("edited successfully");
+                window.location.href = window.location.href;
+            }).catch(function(error) {
+                alert("SYSTEM FAILURE!!! if u check console, you'll get the reason for this.");
+                console.log(error);
+            });
+        });
+    

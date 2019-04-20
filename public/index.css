@@ -1,0 +1,58 @@
+@font-face {
+    font-family: OpenSansBold;
+    src: url(fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+    font-family: OpenSansRegular;
+    src: url(fonts/OpenSans-Regular.ttf);
+}
+
+* {
+    font-family: OpenSansRegular;
+    text-align: center;
+}
+
+h1 {
+    font-family: OpenSansBold;
+    display: inline-block;
+    padding: 5px;
+    border-bottom: 5px black solid;
+}
+
+.service {
+    padding: 15px;
+    background-color: lightpink;
+}
+
+.service h2 {
+    display: inline-block;
+    padding: 5px;
+    border-bottom: 5px lightcoral solid;
+}
+
+.hoogles {
+    padding: 10px;
+    background-color: lightskyblue;
+}
+
+.hoogles h2 {
+    display: inline-block;
+    padding: 5px;
+    border-bottom: 5px lightcyan solid;
+}
+
+ul li {
+    text-align: left;
+}
+
+.boogles h2 {
+    display: inline-block;
+    padding: 5px;
+    border-bottom: 5px green solid;
+}
+
+.boogles {
+    padding: 15px;
+    background-color: lightgreen;
+}

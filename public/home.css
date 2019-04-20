@@ -1,0 +1,47 @@
+table, th, td {
+    border: 1px solid #666;
+    text-align: center;
+    margin-top: 30px;
+}
+
+th {
+    font-size: 30px;
+    font-weight: 200000000000000000000000000000000000000000000000000000000000000000000000;
+    background-color: yellow;
+}
+
+td {
+    font-size: 25px;
+    background-color: #efe;
+}
+
+td:first-child {
+    background-color: cyan;
+}
+
+.marquee {
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: -30px;
+    left: 0;
+    background-color: red;
+    color: white;
+}
+
+.marquee p {
+    position: relative;
+    font-size: 20px;
+    top: -12px;
+}
+
+.wrapper{
+    transform: rotate(90deg);
+    transform-origin:bottom left;
+    
+    position:absolute;
+    top:-100vw;
+    
+    height:100vw;
+    width:100vh;
+}

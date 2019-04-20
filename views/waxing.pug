@@ -1,0 +1,44 @@
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible", content="ie=edge")
+        link(href="index.css", rel="stylesheet")
+        link(href="home.css", rel="stylesheet")
+        script(src="jquery.js")
+        script(src="jquery.marquee.js")
+        title Price List
+    .wrapper
+        body
+            table(align="center", style="width:100%;", cellpadding="10")
+                tr
+                    th(width="60%") Waxing / Other
+                    th(width="40%") 1 Session
+                each service in data
+                    if service.tag !== "threading"
+                        tr
+                            td= service.name
+                            if service.price !== "V"
+                                td= '$' + service.price
+                            else
+                                td= 'Depends on complexity'
+        .marquee
+            p #{msg2}
+
+    script.
+        (function() {
+            $('.marquee').marquee({
+                duration: 7500,
+                gap: 50,
+                delayBeforeStart: 0,
+                direction: 'left',
+                duplicated: false
+            });
+            $(".wrapper").hide();
+            $('.wrapper').fadeIn(500);
+            setTimeout(function() {
+                $('.wrapper').fadeOut(500, function() {
+                    window.location.href = '/';
+                });
+            }, 10000);
+        })();
